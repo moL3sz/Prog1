@@ -47,8 +47,8 @@ int main(){
         win.wait_for_button();
         //generate a rand value btw 0 and 8 and create a Point on a screen and an imagef with the current coords
         while(true){
-            short randx = rand() % (gridW/100); //index of x axis
-            short randy = rand() % (gridH/100); //index of y axis
+            short randx = rand() % ((gridW/100)-1); //index of x axis
+            short randy = rand() % ((gridH/100)-1); //index of y axis
 
             Point imgPoint{randx*100, randy*100};
             Image img{imgPoint, path};
