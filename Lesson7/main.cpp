@@ -28,6 +28,15 @@ void print_element(int e)
 {
     cout << e << " ";
 }
+template <typename C>
+void inc(C &c, int n)
+{
+    for (auto &i : c)
+    {
+        i += n;
+    }
+}
+
 template <typename T>
 void print(const T &a)
 {
@@ -61,28 +70,52 @@ int main()
     copy(a, a + N, li.begin());
 
     // 4
+    print(ai);
+    print(vi);
+    print(li);
+
+    inc(ai, 2);
+    inc(vi, 3);
+    inc(li, 5);
+
+    print(ai);
+    print(vi);
+    print(li);
 
     array<int, N> ai1;
-    copy(ai.begin(), ai.end(), ai1.begin());
+    cc::copy(ai.begin(), ai.end(), ai1.begin());
 
     vector<int> vi1(N);
-    copy(vi.begin(), vi.end(), vi1.begin());
+    cc::copy(vi.begin(), vi.end(), vi1.begin());
 
     list<int> li1(N);
-    copy(li.begin(), li.end(), li1.begin());
+    cc::copy(li.begin(), li.end(), li1.begin());
 
-    for_each(ai1.begin(), ai1.end(), [](int &e)
-             { e += 2; });
-    for_each(vi1.begin(), vi1.end(), [](int &e)
-             { e += 3; });
-
-    for_each(li1.begin(), li1.end(), [](int &e)
-             { e += 5; });
-
-    vector<int> v2(N);
-
-    cc::copy(vi.begin(), vi.end(), vi1.end());
+    print(ai1);
     print(vi1);
+    print(li1);
+
+    vector<int>::iterator vit;
+    vit = find(vi1.begin(), vi1.end(), 3);
+
+    if (vit != vi1.end())
+    {
+        cout << "[+] Found at " << distance(vi1.begin(), vit) << endl;
+    }
+    else{
+        cout << "[-] Not found :(" << endl;
+    }
+
+    //wants to find no 27.
+    vector<int>::iterator vit2;
+	vit2 = std::find(vi1.begin(), vi1.end(), 27);
+	
+    if( vit2 != vi1.end()){
+		cout << "[+] Found at " << distance(vi1.begin(), vit2) << endl;
+	}
+	else {
+		cout << "[-] Not found :(" << endl;
+	}
 
     return 0;
 }
